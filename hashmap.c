@@ -141,7 +141,7 @@ Pair * nextMap(HashMap * map)
   
   map -> current = (map -> current+1) % map -> capacity;
   
-  while(map -> current != -1)
+  while(map -> current != map -> capacity)
     {
       if(map -> buckets[map -> current] != NULL && map -> buckets[map -> current] -> key != NULL)
       {

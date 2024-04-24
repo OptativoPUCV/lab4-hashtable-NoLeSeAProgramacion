@@ -139,21 +139,26 @@ Pair * nextMap(HashMap * map)
 {
   if(map == NULL) return NULL;
 
-  int initialIndex = map->current;
-  int index = (map->current + 1) % map->capacity; // Avanza al siguiente índice
-
-  // Itera hasta volver al índice inicial
-  while (index != initialIndex)
+  // Si aún no se ha accedido a ningún elemento, devuelve el primero
+  if(map -> current == -1)
   {
-    if (map->buckets[index] != NULL && map->buckets[index]->key != NULL)
-    {
-      map->current = index; // Actualiza el índice actual
-      return map->buckets[index];
-    }
-    index = (index + 1) % map->capacity; // Avanza al siguiente índice
+    return firstMap(map);
   }
 
-  // Si se recorren todos los buckets y no se encuentra ningún elemento válido, retorna NULL
+  // Avanza al siguiente índice después del último elemento accedido
+  map -> current = (map -> current + 1) % map -> capacity;
+
+  // Itera a través de los buckets para encontrar el siguiente elemento no nulo
+  long startingIndex = map -> current;
+  do
+  {
+    if(map -> buckets[map -> current] != NULL && map -> buckets[map -> current] -> key != NULL)
+    {
+      return map -> buckets[map -> current];
+    }
+    map -> current = (map -> current + 1) % map -> capacity;
+  } while(map -> current != startingIndex); // Sal del bucle cuando se haya recorrido todo el HashMap
+
+  // Si no se encuentra ningún elemento válido, devuelve NULL
   return NULL;
 }
-

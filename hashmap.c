@@ -139,7 +139,7 @@ Pair * nextMap(HashMap * map)
 {
   if(map == NULL) return NULL;
   
-  int variable  = (map -> current+1) % map -> capacity;
+  int variable  = (map -> current+1) ;
   
   while(map -> current != variable)
     {

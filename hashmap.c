@@ -138,6 +138,7 @@ Pair * firstMap(HashMap * map)
 Pair * nextMap(HashMap * map)
 {
   if(map == NULL) return NULL;
+  
   map -> current = (map -> current+1) % map -> capacity;
   
   while(map -> current != -1)
@@ -147,7 +148,7 @@ Pair * nextMap(HashMap * map)
         return map -> buckets[map -> current];
       }
       map -> current = (map -> current+1) % map -> capacity;
-      
+      return NULL;
     }
   return NULL;
 }

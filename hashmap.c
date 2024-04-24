@@ -139,7 +139,8 @@ Pair * nextMap(HashMap * map)
 {
   if(map == NULL) return NULL;
   
-  int variable  = (map -> current+1) % map -> capacity;
+  int variable  = (map -> current+1);
+  
   while(variable != map -> current)
     {
       if(map -> buckets[variable] != NULL && map -> buckets[variable] -> key != NULL)
